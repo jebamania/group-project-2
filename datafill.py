@@ -62,7 +62,7 @@ def fill_employment_type(df: DataFrame):
     """Fill "employment_type" column missing data."""
     # TODO determine what to fill with
     # "Other" is an option
-    df["benefits"] = df["benefits"].fillna("Undefined")
+    df["employment_type"] = df["employment_type"].fillna("Undefined")
     return df
 
 
