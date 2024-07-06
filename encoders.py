@@ -4,8 +4,13 @@ Due to encoders working across rows, They should be built on training data
 first to not leak testing data.
 """
 
-from pandas import concat, DataFrame
+from pandas import concat, DataFrame, Series
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
+
+
+def _reshape(col: Series):
+    """Reshape a column to be compatible with encoders' fit and transform inputs."""
+    return col.values.reshape(-1, 1)
 
 
 class MultiColumnEncoder:
@@ -19,13 +24,13 @@ class MultiColumnEncoder:
 
     def fit(self, X: DataFrame):
         """Fit the encoder to a data frame containing the target column."""
-        self._encoder.fit(X[self._column])
+        self._encoder.fit(_reshape(X[self._column]))
         return self
 
     def transform(self, X: DataFrame):
         """Transform a data frame's column and return its multi-column encoding."""
         return DataFrame(
-            self._encoder.transform(X[self._column]),
+            self._encoder.transform(_reshape(X[self._column])),
             columns=self._encoder.get_feature_names_out(),
         )
 
@@ -41,12 +46,12 @@ class SingleColumnEncoder:
 
     def fit(self, X: DataFrame):
         """Fit the encoder to a data frame containing the target column."""
-        self._encoder.fit(X[self.column])
+        self._encoder.fit(_reshape(X[self.column]))
         return self
 
     def transform(self, X: DataFrame):
         """Transform a data frame's column and return an encoded column."""
-        return self._encoder.transform(X[self.column])
+        return self._encoder.transform(_reshape(X[self.column]))
 
 
 def build_country_encoder(X: DataFrame):
