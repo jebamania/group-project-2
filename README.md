@@ -37,3 +37,7 @@ This is a dataset with around 18 thousand real and fraudulent job descriptions. 
 ## Approach
 
 Our objective is to build a model that can most accurately identify fraudulent job postings. The way that we are approaching this is by assigning different models (Random Forest, Logistical Regression, and XG Boost) to different team members to build with minimal data cleaning or transformation. Then once we have a baseline score to compare to, we are going to apply the cleaned data to our models to determine which model has the highest accuracy score.
+
+## Results
+
+We hoped to pick a specific model that operated the best, but both Logistic Regression and XG Boosted Trees performed similarly with balanced accuracy scores around 80% and precision on fraud at about 60%. More encoding or implementing Vectoring could improve these scores a long way.
