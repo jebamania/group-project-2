@@ -40,4 +40,4 @@ Our objective is to build a model that can most accurately identify fraudulent j
 
 ## Results
 
-We hoped to pick a specific model that operated the best, but both Logistic Regression and XG Boosted Trees performed similarly with balanced accuracy scores around 80% and precision on fraud at about 60%. More encoding or implementing Vectoring could improve these scores a long way.
+We hoped to pick a specific model that operated the best, but both Random Forest and XG Boosted Trees models performed similarly with balanced accuracy scores around 80% and precision on fraud at about 60%. More encoding or implementing Vectoring could improve these scores a long way.
